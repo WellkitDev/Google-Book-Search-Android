@@ -21,6 +21,7 @@ class ConnectivityService {
         return ConnectivityStatus.Offline;
         break;
       default:
+        return ConnectivityStatus.Offline;
     }
   }
 }
