@@ -45,7 +45,7 @@ class DBHelper {
       where: "bookId = ?",
       whereArgs: [id],
     );
-    if (foundBook.length <= 0) {
+    if (foundBook.isEmpty) {
       return false;
     } else {
       return true;
