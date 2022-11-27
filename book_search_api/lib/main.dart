@@ -1,3 +1,4 @@
+import 'package:book_search_api/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,7 @@ class BooksApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       title: 'Search Books App',
+      home: HomeScreen(),
     );
   }
 }
