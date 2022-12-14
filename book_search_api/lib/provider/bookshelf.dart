@@ -23,4 +23,30 @@ class Bookshelf with ChangeNotifier {
       'bookImageUrl': bookToSave.imageUrl,
     });
   }
+
+  Future<void> fetchAndSetBooks() async {
+    await DBHelper.database();
+    final savedBookList = await DBHelper.getData('bookshelf');
+    _saveBooks = savedBookList
+        .map(
+          (item) => SavedBook(
+            id: item['bookId'],
+            title: item['bookTitle'],
+            authors: item['authors'],
+            imageUrl: item['bookImageUrl'],
+          ),
+        )
+        .toList();
+  }
+
+  //remove data saved
+  Future<void> removeSavedBook(String id) async {
+    await DBHelper.deleteBook(id);
+    fetchAndSetBooks();
+  }
+
+  //chek data find book
+  Future<bool> checkExistingBook(String id) async {
+    return await DBHelper.findBook(id);
+  }
 }
