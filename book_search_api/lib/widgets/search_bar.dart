@@ -133,10 +133,9 @@ class _SearchBarState extends State<SearchBar> {
                       searchString = value;
                     },
                     onSubmitted: (value) async {
-                      if (value == '') {
-                        return;
-                        search();
-                      }
+                      if (value == '') return;
+
+                      search();
                     },
                   ),
                 ),
@@ -147,13 +146,11 @@ class _SearchBarState extends State<SearchBar> {
                   child: GestureDetector(
                     onTap: () {
                       FocusScope.of(context).unfocus();
-                      if (searchString == null) {
-                        return;
-                      }
+                      if (searchString == null) return;
                       if (searchString != null &&
-                          searchString.trim().length == 0) {
-                        SearchBar();
-                      }
+                          searchString.trim().length == 0) return;
+
+                      search();
                     },
                     child: Icon(
                       Icons.search,
