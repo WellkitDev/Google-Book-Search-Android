@@ -1,5 +1,8 @@
 import 'package:book_search_api/provider/books.dart';
+import 'package:book_search_api/services/connectivity_status.dart';
+import 'package:book_search_api/widgets/book_grid.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class SpecificSearchScreen extends StatefulWidget {
@@ -11,9 +14,23 @@ class SpecificSearchScreen extends StatefulWidget {
 
 class _SpecificSearchScreenState extends State<SpecificSearchScreen> {
   @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    var connectivity = Provider.of<ConnectivityStatus>(context);
+    if (connectivity != ConnectivityStatus.Offline) {
+      setState(() {});
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     Map<String, dynamic> searchArgs =
         ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+
+    Provider.of<Books>(context, listen: false).setStartIndex();
+    Provider.of<Books>(context, listen: false)
+        .toggleTotalItemsCalculation(true);
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,11 +72,31 @@ class _SpecificSearchScreenState extends State<SpecificSearchScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Text('categoryTitle'),
+                            Text(
+                              searchArgs[("categoryTitle")] != null
+                                  ? 'CATEGORY'
+                                  : 'Search result for : ',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.white,
+                              ),
+                            ),
                             SizedBox(
                               height: 2.0,
                             ),
-                            Text('bookTitle'),
+                            Text(
+                              searchArgs['bookTitle'] != null
+                                  ? searchArgs['bookTitle']
+                                  : searchArgs['categoryTitle'],
+                              softWrap: true,
+                              textAlign: TextAlign.end,
+                              style: GoogleFonts.montserrat(
+                                textStyle: TextStyle(
+                                  fontSize: 18.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -82,7 +119,7 @@ class _SpecificSearchScreenState extends State<SpecificSearchScreen> {
               } else {
                 Provider.of<Books>(context, listen: false)
                     .toggleTotalItemsCalculation(false);
-                //bookgrid
+                return BooksGrid(SpecificSearchScreen.routeName);
               }
             },
           ),
