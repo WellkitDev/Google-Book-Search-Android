@@ -26,6 +26,7 @@ class ShowcaseSearchButtonSheet extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
@@ -92,12 +93,18 @@ class ShowcaseSearchButtonSheet extends StatelessWidget {
                       ),
                     ),
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).pushNamed(
+                            SpecificSearchScreen.routeName,
+                            arguments: {
+                              'bookTitle': book.title,
+                              'bookAuthor': book.singleAuthor,
+                            });
+                      },
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.network(
                           book.thumbnailUrl,
-                          //height: kBook,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -145,7 +152,7 @@ class ShowcaseSearchButtonSheet extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'PUBLISHER',
+                      'Publisher : ',
                       softWrap: true,
                       style: TextStyle(
                         color: Colors.teal,
@@ -179,8 +186,12 @@ class ShowcaseSearchButtonSheet extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context)
-                            .pushNamed(SpecificSearchScreen.routeName);
+                        Navigator.of(context).pushNamed(
+                            SpecificSearchScreen.routeName,
+                            arguments: {
+                              'bookTitle': book.title,
+                              'bookAuthor': book.singleAuthor,
+                            });
                       },
                       child: Icon(
                         Icons.search,
