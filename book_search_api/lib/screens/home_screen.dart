@@ -1,4 +1,5 @@
 import 'package:book_search_api/provider/gtc.dart';
+import 'package:book_search_api/widgets/navbar.dart';
 import 'package:book_search_api/widgets/title_app.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: NavBar(HomeScreen.routeName),
       body: RefreshIndicator(
         color: Color(0xff0DB067),
         backgroundColor: Colors.white,
@@ -54,8 +57,6 @@ class _HomeScreenState extends State<HomeScreen> {
           await getBooksData();
         },
       ),
-      //floatinglocation
-      //floatingbbutton
     );
   }
 }
