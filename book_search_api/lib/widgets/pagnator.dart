@@ -22,12 +22,22 @@ class Pagenator extends StatelessWidget {
                 ),
                 Spacer(),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: books.startIndex == 0
+                      ? null
+                      : () {
+                          books.paginate(false);
+                          books.setSpecificScreenLoadingState(true);
+                        },
                   icon: Icon(Icons.chevron_left),
                   color: Color(0xff0DB067),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: (books.startIndex <= books.totalBookCount - 18)
+                      ? () {
+                          books.paginate(true);
+                          books.setSpecificScreenLoadingState(true);
+                        }
+                      : null,
                   icon: Icon(Icons.chevron_right),
                   color: Color(0xff0DB067),
                 ),
