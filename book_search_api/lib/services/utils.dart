@@ -39,17 +39,16 @@ class Utils {
       id: book['id'],
       title: volumeInfo['title'],
       subtitle: volumeInfo['subtitle'],
-      publishedData: volumeInfo['publishedDate'] != null
-          ? (volumeInfo['publishedDate'] as List<dynamic>)
-              .map((publis) => publis.toString())
-              .toList()
+      publishedData: volumeInfo['publishedDate'] == null
+          ? '---'
           : volumeInfo['publishedDate'],
       authors: volumeInfo['authors'] != null
           ? (volumeInfo['authors'] as List<dynamic>)
               .map((author) => author.toString())
               .toList()
           : [''],
-      publisher: volumeInfo['publisher'] ?? '---',
+      publisher:
+          volumeInfo['publisher'] == null ? '---' : volumeInfo['publisher'],
       description: volumeInfo['description'] ?? 'No description available',
       pageCount: volumeInfo['pageCount'],
       categories: volumeInfo['categories'] == null
@@ -70,6 +69,9 @@ class Utils {
       isEbook: saleInfo['isEbook'],
       seleability: saleInfo['saleability'],
       amount: saleInfo['saleability'] != 'FOR_SALE'
+          ? '---'
+          : saleInfo['retailPrice']['amount'].toString(),
+      currencyCode: saleInfo['saleability'] != 'FOR_SALE'
           ? '---'
           : saleInfo['retailPrice']['currencyCode'],
       accessViewStatus: accessInfo['accessViewStatus'],
