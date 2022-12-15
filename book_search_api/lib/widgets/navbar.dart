@@ -25,7 +25,7 @@ class _NavBarState extends State<NavBar> {
       openNav
           ? MediaQuery.of(context).size.width * 0.6
           : MediaQuery.of(context).size.width * 0.2,
-      250.0,
+      200.0,
     );
     return Container(
       height: hight,
