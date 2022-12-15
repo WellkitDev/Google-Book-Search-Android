@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 class BooksGrid extends StatelessWidget {
   final String routeName;
-  const BooksGrid({this.routeName});
+  const BooksGrid(this.routeName);
 
   @override
   Widget build(BuildContext context) {
