@@ -1,4 +1,5 @@
 import 'package:book_search_api/models/category.dart';
+import 'package:book_search_api/screens/spesific_search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,6 +13,21 @@ class CategoryItem extends StatefulWidget {
 
 class _CategoryItemState extends State<CategoryItem> {
   double elevation = 18.0;
+  void navigateToSpecifikSearchScreen() {
+    setState(() {
+      elevation = 18.0;
+    });
+    Future.delayed(Duration(milliseconds: 100)).then((_) {
+      setState(() {
+        elevation = 18.0;
+      });
+      Navigator.of(context)
+          .pushNamed(SpecificSearchScreen.routeName, arguments: {
+        'category': widget.category.categoryLink,
+        'categoryTitle': widget.category.categoryTitle,
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +37,7 @@ class _CategoryItemState extends State<CategoryItem> {
         bottom: MediaQuery.of(context).size.height * 0.09 * 1.3,
       ),
       child: GestureDetector(
-        onTap: () {},
+        onTap: navigateToSpecifikSearchScreen,
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15)),
