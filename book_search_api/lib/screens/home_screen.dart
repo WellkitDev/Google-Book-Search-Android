@@ -1,5 +1,6 @@
 import 'package:book_search_api/provider/gtc.dart';
 import 'package:book_search_api/widgets/navbar.dart';
+import 'package:book_search_api/widgets/selectionWidget/categories_selection.dart';
 import 'package:book_search_api/widgets/title_app.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -45,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     Container(
                       //categoriselection
-                      child: Column(),
+                      child: CategoriesSelection(),
                     ),
                   ],
                 ),
