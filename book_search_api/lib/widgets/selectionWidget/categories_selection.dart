@@ -27,8 +27,8 @@ class CategoriesSelection extends StatelessWidget {
             ),
           ),
           Container(
-            width: MediaQuery.of(context).size.width * 0.70,
-            height: MediaQuery.of(context).size.height * 0.95,
+            width: MediaQuery.of(context).size.width * 0.95,
+            height: MediaQuery.of(context).size.height * 0.70,
             child: GridView.builder(
               scrollDirection: Axis.vertical,
               itemCount: categories.categoriesList.length,
