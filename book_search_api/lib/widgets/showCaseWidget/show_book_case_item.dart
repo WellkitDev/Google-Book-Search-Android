@@ -1,5 +1,6 @@
 import 'package:book_search_api/models/book.dart';
 import 'package:book_search_api/services/utils.dart';
+import 'package:book_search_api/widgets/showCaseWidget/show_bottom_list.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -11,7 +12,15 @@ class ShowcaseBookItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return ShowcaseSearchButtonSheet(book);
+          },
+          elevation: 18.0,
+        );
+      },
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: 4.0,
@@ -20,6 +29,7 @@ class ShowcaseBookItem extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
               height: MediaQuery.of(context).size.height * 0.2,
