@@ -32,7 +32,7 @@ class TitleApp extends StatelessWidget {
                           color: Colors.white,
                           height: 0.9,
                           fontWeight: FontWeight.bold,
-                          fontSize: 28,
+                          fontSize: 30,
                         ),
                       ),
                       textAlign: TextAlign.start,
