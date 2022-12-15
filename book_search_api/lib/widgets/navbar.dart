@@ -25,7 +25,7 @@ class _NavBarState extends State<NavBar> {
       openNav
           ? MediaQuery.of(context).size.width * 0.6
           : MediaQuery.of(context).size.width * 0.2,
-      200.0,
+      250.0,
     );
     return Container(
       height: hight,
@@ -51,6 +51,22 @@ class _NavBarState extends State<NavBar> {
                   NavbarBotton(Icons.search, SearchScreen.routeName,
                       widget.currentRoute),
               ],
+            ),
+          ),
+          //buttombar
+          Container(
+            width: 42,
+            child: FloatingActionButton(
+              backgroundColor: Colors.white,
+              child: Icon(
+                openNav ? Icons.chevron_right : Icons.chevron_left,
+                color: Color(0xff0DB067),
+              ),
+              onPressed: () {
+                setState(() {
+                  openNav = !openNav;
+                });
+              },
             ),
           ),
         ],
